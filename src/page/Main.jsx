@@ -78,7 +78,9 @@ class Main extends React.Component {
     getData=(id)=>{
         var parser = new xml.Parser()
         console.log(id)
-        axios.get('http://ws.bus.go.kr/api/rest/buspos/getLowBusPosByRtid?ServiceKey=0roO4f41n5M14%2BGxpA%2B2d2RG4eH4kpApBrwyKd6mkxon9CRFimdFL%2F7rjCUMZ3t8KvaTUZVQ3qg9ZEdh7DfdUw%3D%3D&busRouteId=' + id)
+        //0roO4f41n5M14%2BGxpA%2B2d2RG4eH4kpApBrwyKd6mkxon9CRFimdFL%2F7rjCUMZ3t8KvaTUZVQ3qg9ZEdh7DfdUw%3D%3D 민준
+        //INxlTamsdga3K8KfaZN0misA8QPMQPCujJDrGgUpOA0InBSyi%2Bgsjzjh19XcoIgFj1Nj3pgQkFcaH8npOheeHw%3D%3D 원우
+        axios.get('http://ws.bus.go.kr/api/rest/buspos/getLowBusPosByRtid?ServiceKey=INxlTamsdga3K8KfaZN0misA8QPMQPCujJDrGgUpOA0InBSyi%2Bgsjzjh19XcoIgFj1Nj3pgQkFcaH8npOheeHw%3D%3D&busRouteId=' + id)
             .then(value => {
                 
 
@@ -90,14 +92,16 @@ class Main extends React.Component {
                 })
             })
             .then(data => {
+                if(data!=null){
                 const XY = Object.values(data.ServiceResult.msgBody[0].itemList)
                 this.setState({
                     datas: XY
                 })
-
+            }
             })
             .catch(value => {
                 console.log(value)
+                console.log(busid[this.state.value])
                 console.log('실패')
             })
         }
@@ -147,22 +151,36 @@ class Main extends React.Component {
         })
     }
     thisProm=()=>{
-        var data=prompt()
+        var data=prompt('바꾸실 버스의 번호를 입력하세요')
+        if(busid[data]){
+            if(data==this.state.value){
+                
+            }
+            else{
         this.setState({
             value:data*1
         })
-        
         const id = busid[this.state.value]
         console.log(id)
         this.getData(busid[this.state.value])
+    }
+    }
+    else{
+        console.log(data)
+        alert('잘못된 입력')
+        
+    }
+       
+        
     }
     render() {
         // this.setState({clicked:this.state.clicked})
 
         return (
             <div>
-                <Banner></Banner>
-                <BusMap id='map' ohno={this.state.subway} datas={this.state.datas} map={this.state.map} on={this.sujung} />
+                <Banner click={this.clicked} haha={this.thisProm} bus={true}></Banner>
+                <BusMap id='map' ohno={this.state.subway} datas={this.state.datas} map={this.state.map} on={this.sujung} onclick={this.clicked}/>
+                
             </div>
         )
     }

@@ -164,7 +164,7 @@ class Subway extends React.Component {
         
         return (
             <div>
-                <Banner></Banner>
+                <Banner bus={false  } click={this.clicked}></Banner>
                 <SubwayMap ohno={this.state.subway} datas={this.state.datas} map={this.state.map} on={this.sujung} />
             </div>
         )

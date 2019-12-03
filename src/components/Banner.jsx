@@ -46,6 +46,8 @@ color:gray;
         color: white;
 }; 
 }
+&:hover{font-weight:bold;
+        color: white;};
 `
 const NavIcon=styled.ul`
         display: flex;
@@ -86,8 +88,8 @@ const Banner = props => {
                         <NavText>
                         <NavTextItem className='asd'><a href="/bus"> 버스</a></NavTextItem>
                         <NavTextItem className='asd' ><a href="/subway">지하철</a></NavTextItem>
-                        <NavTextItem className='asd' onClick={()=>props.click()}>설정</NavTextItem>
-                        <Img src={refresh}></Img>
+                        {props.bus? <NavTextItem className='asd' onClick={props.haha}>버스 번호 바꾸기</NavTextItem>:<></>}
+                        <Img src={refresh} onClick={props.click}></Img>
                         
                         </NavText>
                 </Wrapper>
