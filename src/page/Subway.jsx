@@ -108,7 +108,8 @@ class Subway extends React.Component {
                 clickable:true,
             })
             marker.setMap(this.state.map)
-            var iwContent = '<div style="padding:5px;">역명'+value[2]['역명']+'\n'+''+'</div>', 
+            var iwContent = '<div style="padding:15px;">역명:'+value[2]['역명']+'<br>'+'대합실↔승강장:'+value[2]['대합실↔승강장']+'<br>'+'연락처:'+value[2]['역무실 연락처']+'<br>외부↔대합실:'+value[2]['외부↔대합실']+
+            '<br>이동식 발판:'+value[2]['이동식 발판']+'<br>환승통로:'+value[2]['환승통로']+'</div>', 
             iwRemoveable = true;
             var infowindow = new kakao.maps.InfoWindow({
                 content : iwContent,
@@ -163,10 +164,7 @@ class Subway extends React.Component {
         
         return (
             <div>
-                <img src={SVG} id='check' onClick={this.clicked}/>
-                {this.state.clicked?<></>:<Banner click={this.thisProm}/>}
-                {/* <input type="text" value={this.state.value} onChange={this.onChange}/> */}
-                
+                <Banner></Banner>
                 <SubwayMap ohno={this.state.subway} datas={this.state.datas} map={this.state.map} on={this.sujung} />
             </div>
         )

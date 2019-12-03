@@ -112,7 +112,7 @@ class Main extends React.Component {
         if(bus){
         const markers=bus.map(value=>{
             
-            new kakao.maps.Marker({
+            return new kakao.maps.Marker({
           
                 position: new kakao.maps.LatLng(value[0], value[1]),
                 image:markerImage
@@ -161,10 +161,7 @@ class Main extends React.Component {
 
         return (
             <div>
-                <img src={SVG} id='check' onClick={this.clicked}/>
-                {this.state.clicked?<></>:<Banner click={this.thisProm}/>}
-                {/* <input type="text" value={this.state.value} onChange={this.onChange}/> */}
-                
+                <Banner></Banner>
                 <BusMap id='map' ohno={this.state.subway} datas={this.state.datas} map={this.state.map} on={this.sujung} />
             </div>
         )
