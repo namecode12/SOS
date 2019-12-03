@@ -1,4 +1,5 @@
 /*global kakao*/
+import Maindisplay from './page/Maindisplay'
 import React from 'react';
 import Main from './page/Main';
 import { BrowserRouter as Router,Route,Switch } from 'react-router-dom'
@@ -33,7 +34,7 @@ class App extends React.Component {
       <GlobalStyle/>
       <Router>
       <Route path='/' exact>
-            <Subway></Subway>
+            <Maindisplay/>
           </Route>
           <Route path='/subway' exact>
             <Subway></Subway>
